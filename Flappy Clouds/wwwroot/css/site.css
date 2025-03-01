@@ -1,0 +1,304 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+:root {
+    --Black: #000000;
+    --BG: #E9DBCC;
+    --White: #FFFFFF;
+    --Font-Icons: #5B462E;
+    --Card-label-fill: rgba(91,70,46,0.9);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 80px;
+    padding: 0;
+    background-color: var(--BG);
+    color: var(--Font-Icons);
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 170px;
+    margin-right: 170px;
+    margin-bottom: 60px;
+}
+
+/* Header */
+/*.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: transparent;
+}*/
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-control {
+    background-color: var(--BG);
+    padding: 10px;
+    border: 1px solid var(--Card-label-fill);
+    border-radius: 5px;
+}
+
+.signup-btn {
+    display: inline-block;
+    padding: 5px 5px;
+    background-color: var(--Card-label-fill);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: small;
+}
+
+    .signup-btn:hover {
+        background-color: #8B6F47;
+    }
+
+.search-bar {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid var(--Font-Icons);
+    border-radius: 28px;
+}
+
+.search-bar::placeholder{
+    padding: 8px;
+}
+
+
+.header-icons .icon {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    padding: 8px 0;
+    background-color: transparent;
+    font-family: "Cherry Bomb One", serif;
+    margin-bottom: 46px;
+}
+
+    .title-section h1 {
+        font-size: 64px;
+    }
+
+    .title-section h1 {
+        font-size: 40px;
+    }
+
+/* Navigation Bar */
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    background-color: var(--Font-Icons);
+    padding: 10px 0;
+    margin-bottom: 60px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--BG);
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+    .nav-link:hover {
+        color: var(--BG);
+        text-decoration: underline;
+    }
+
+/* Discover Section */
+.discover-section {
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 60px;
+    /*background-color: aqua;*/
+}
+
+    .discover-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+.discover-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #f0d3b7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Reviews Section */
+.reviews-section {
+    padding: 40px 20px;
+    margin-bottom: 60px;
+    /*background-color:aqua;*/
+}
+
+    .reviews-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+.review-cards {
+    display: grid; /* Use grid instead of flex */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjust column size */
+    gap: 20px; /* Space between cards */
+    justify-content: center;
+}
+
+.review-card {
+    display: grid;
+    grid-template-columns: 100px auto; /* First column (image) is fixed width, second auto */
+    align-items: center;
+    background-color: transparent; 
+    border: 1px solid var(--Font-Icons); 
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .review-card img {
+        width: 140px; /* Adjust image size */
+        height: auto;
+        border-radius: 8px;
+    }
+.review-card h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--Black);
+    margin-bottom: 8px;
+}
+
+.review-card p {
+    font-size: 0.9rem;
+    color: var(--Black);
+    margin-bottom: 10px;
+}
+
+.review-text {
+    padding-left: 16px;
+}
+
+/* Style the button */
+.detail-button {
+    align-self: center;
+    padding: 8px 12px;
+    background-color: var(--Font-Icons);
+    color: var(--BG);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+    .detail-button:hover {
+        background-color: #543f2e;
+    }
+
+
+/* Footer */
+.footer {
+    padding: 60px 170px;
+    background-color: rgba(38, 20, 0, 0.7);
+}
+
+.subscribe {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .subscribe h3, p {
+        color: var(--BG);
+    }
+
+    .subscribe input[type="email"] {
+        padding: 10px;
+        border: 1px solid #b08968;
+        border-radius: 12px;
+        width: 40%;
+        border: 1px solid var(--Font-Icons);
+    }
+
+    .subscribe button {
+        padding: 10px 20px;
+        background-color: #b08968;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: var(--BG);
+}
+
+    .footer-links h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        color: var(--BG);
+    }
+
+    .footer-links a {
+        display: block;
+        text-decoration: none;
+        color: #5a4631;
+        margin-bottom: 5px;
+        color: var(--BG);
+    }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }

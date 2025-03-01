@@ -1,0 +1,24 @@
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.plist
+*.sln.cache
+*.csproj.user
+.vs/
+.idea/
+.vscode/
+
+# Configuration files
+appsettings.Development.json
+
+# Dependencies
+node_modules/
+packages/
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Flappy_Clouds.Entities.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Clouds</title>
+    <link rel="stylesheet" href="~\wwwroot\css\site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Discover section -->
+    @* Should make dynamic *@
+    <section class="discover-section">
+        <h2>Discover</h2>
+        <div class="discover-grid">
+            <button class="card">
+                <img src="./Assets/Products/AnimalSpreadFeatured_2048x.jpg" alt="Thumbnail" />
+                <div class="Discover-label">Featured</div>
+            </button>
+            <button class="card">
+                <img src="#" alt="Thumbnail" />
+                <div class="Discover-label">Key Chains</div>
+            </button>
+            <button class="card">
+                <img src="#" alt="Thumbnail" />
+                <div class="Discover-label">Phone Charm</div>
+            </button>
+            <button class="card">
+                <img src="#" alt="Thumbnail" />
+                <div class="Discover-label">Plushies</div>
+            </button>
+            <button class="card">
+                <img src="#" alt="Thumbnail" />
+                <div class="Discover-label">Jewelries</div>
+            </button>
+            <button class="card">
+                <img src="#" alt="Thumbnail" />
+                <div class="Discover-label">Hot Picks</div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Reviews section -->
+    @* Keeping Hard Coded *@
+    <section class="reviews-section">
+        <h2>Reviews</h2>
+        <div class="review-cards">
+            <div class="review-card">
+                <img src="#" alt="Product 1">
+                <div class="review-text">
+                    <h3>"Perfect addition to my phone!"</h3>
+                    <p>This phone charm is everything I hoped for. The design is intricate, and the colors pop beautifully.</p>
+                </div>
+                <button class="detail-button">View product detail</button>
+            </div>
+            <div class="review-card">
+                <img src="#" alt="Product 2">
+                <div class="review-text">
+					<h3>"Soft and Super Cuddly"</h3>
+					<p>I absolutely adore my plushie. It’s the softest thing ever and makes a wonderful snuggle buddy.</p>
+                </div>
+                <button class="detail-button">View product detail</button>
+            </div>
+            <div class="review-card">
+                <img src="#" alt="Product 3">
+                <div class="review-text">
+                    <h3>"Simple and Elegant"</h3>
+                    <p>The jewelry set I ordered is elegant and versatile enough to pair with any outfit.</p>
+                </div>
+                <button class="detail-button">View product detail</button>
+            </div>
+            <div class="review-card">
+                <img src="#" alt="Product 4">
+                <div class="review-text">
+                    <h3>"Adorable and Durable!"</h3>
+                    <p>The keychain is sturdy and adorable. I’ve received so many compliments!</p>
+                </div>
+                <button class="detail-button">View product detail</button>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
