@@ -10,70 +10,72 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Flappy_Clouds.Controllers
 {
-    public class AccountController(FlappyCloudsContext context, IPasswordHasher<User> passwordHasher) : Controller
+    public class AccountController : Controller
     {
+        private readonly FlappyCloudsContext _context;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        private readonly FlappyCloudsContext _context = context;
-        private readonly IPasswordHasher<User> _passwordHasher = passwordHasher;
+        public AccountController(FlappyCloudsContext context, IPasswordHasher<User> passwordHasher)
+        {
+            _context = context;
+            _passwordHasher = passwordHasher;
+        }
 
         public async Task<IActionResult> Index()
         {
-            var users = await _context.Users.ToListAsync(); // Ensure the model is never null
+            var users = await _context.Users.ToListAsync();
             return View(users);
         }
+
         public IActionResult Registration()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Registration(RegistrationViewModel model)
         {
-            
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                if (_context.Users.Any(u => u.Email == model.Email))
+                {
+                    ModelState.AddModelError("Email", "This email is already registered.");
+                    return View(model);
+                }
+
                 User account = GetAccount(model);
                 account.PasswordHash = _passwordHasher.HashPassword(account, model.Password);
                 account.Address = model.Address;
                 account.PhoneNumber = model.PhoneNumber;
+
                 try
                 {
                     _context.Users.Add(account);
                     _context.SaveChanges();
                     ModelState.Clear();
-                    ViewBag.Message = $"{account.FirstName}{account.LastName} Registered Successfully";
+                    ViewBag.Message = $"{account.FirstName} {account.LastName} registered successfully.";
                 }
                 catch (DbUpdateException)
                 {
-
-                    ModelState.AddModelError("", "Please enter unique Model or Password ");
+                    ModelState.AddModelError("", "An error occurred while registering the user.");
                     return View(model);
                 }
-                return View();
 
+                return RedirectToAction("Login");
             }
             return View(model);
-
-            static User GetAccount(RegistrationViewModel model)
-            {
-                return new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email
-                };
-            }
         }
 
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Retrieve user by email
                 var user = _context.Users.FirstOrDefault(x => x.Email == model.Email);
 
                 if (user != null)
@@ -82,40 +84,64 @@ namespace Flappy_Clouds.Controllers
 
                     if (result == PasswordVerificationResult.Success)
                     {
-
                         var claims = new List<Claim>
-                {
-                    new(ClaimTypes.Name, user.Email),
-                    new("Name", user.FirstName),
-                    new(ClaimTypes.Role, "User")
-                };
+                        {
+                            new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                            new Claim(ClaimTypes.Email, user.Email),
+                            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                            new(ClaimTypes.Role, user.Role) // Now uses real role from DB
+                        };
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                        return RedirectToAction("Index");
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            new AuthenticationProperties
+                            {
+                                IsPersistent = true,
+                                ExpiresUtc = DateTime.UtcNow.AddHours(2)
+                            });
+
+                        return RedirectToAction("Index","Home");
                     }
                 }
 
-                ModelState.AddModelError("", "Username/Email or Password is incorrect");
+                ModelState.AddModelError("", "Username/Email or Password is incorrect.");
             }
 
             return View(model);
         }
 
-
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Home");
         }
-        [Authorize]
-        public IActionResult SecurePage()
-        {
-            
-            ViewBag.Name = HttpContext.User.Identity.Name;
-            return View();
 
+        //[Authorize]
+        //[HttpPost]
+        //public IActionResult AddReview(ReviewViewModel model)
+        //{
+        //    // Logic to add review
+        //}
+
+
+        //[Authorize]
+        //public IActionResult SecurePage()
+        //{
+        //    ViewBag.Name = HttpContext.User.Identity?.Name;
+        //    return View();
+        //}
+
+        private static User GetAccount(RegistrationViewModel model)
+        {
+            return new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email
+            };
         }
     }
 }

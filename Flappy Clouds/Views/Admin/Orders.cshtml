@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Flappy_Clouds.Entities.Order>
+
+@{
+    ViewData["Title"] = "View Orders";
+}
+
+<h1>Orders</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.User.FirstName @order.User.LastName</td>
+                <td>@order.OrderDate?.ToShortDateString()</td>
+                <td>@order.TotalAmount.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>

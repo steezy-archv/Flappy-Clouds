@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Flappy_Clouds.Entities.Product>
+
+@{
+    ViewData["Title"] = "Manage Products";
+}
+
+<h1>Products</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.StockQuantity</td>
+                </tr>
+        }
+    </tbody>
+</table>

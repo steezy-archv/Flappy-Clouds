@@ -9,6 +9,8 @@ namespace Flappy_Clouds.Entities;
 [Index("Email", Name = "UQ__Users__A9D1053438470288", IsUnique = true)]
 public partial class User
 {
+    internal readonly bool IsAdmin;
+
     [Key]
     public int UserId { get; set; }
 
@@ -25,7 +27,7 @@ public partial class User
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "Password is required")]
-    [MaxLength(20, ErrorMessage = "Max 20 characters is allowed  ")]
+    [MaxLength(255)]
     public string PasswordHash { get; set; } = null!;
 
     [StringLength(15)]
@@ -34,8 +36,9 @@ public partial class User
     [StringLength(255)]
     public string? Address { get; set; }
 
+    [Required(ErrorMessage = "Role is required")]
     [StringLength(20)]
-    public string? Role { get; set; }
+    public string Role { get; set; } = "Customer";
 
     [Column(TypeName = "datetime")]
     public DateTime? CreatedAt { get; set; }

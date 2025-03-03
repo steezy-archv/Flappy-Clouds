@@ -14,6 +14,7 @@
     <header>
         <!-- Top row: Search bar, User icon, Cart icon -->
         <input type="text" placeholder="Search products" class="search-bar">
+
         <div class="header-icons">
             <button class="icon user-icon" id="userIcon">
                 <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,11 +22,21 @@
                 </svg>
             </button>
 
-            <!-- Dropdown Menu -->
             <div class="dropdown" id="userDropdown">
-                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                <a class="nav-link text-dark" asp-controller="Account" asp-action="Registration">Register</a>
-                <a href="#" id="logoutLink" style="display: none;">Logout</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if ((bool)ViewBag.IsAdmin)
+                    {
+                        <a href="/Admin/Dashboard">Admin Panel</a>
+                    }
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Registration">Register</a>
+                }
             </div>
 
             <button class="icon cart-icon">

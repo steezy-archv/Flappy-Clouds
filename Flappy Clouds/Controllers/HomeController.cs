@@ -1,22 +1,41 @@
 using System.Diagnostics;
+using Flappy_Clouds.Entities;
 using Flappy_Clouds.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flappy_Clouds.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private readonly FlappyCloudsContext _context;
+
+        public HomeController(FlappyCloudsContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            bool isAdmin = false;
+            if (User.Identity.IsAuthenticated)
+            {
+                var email = User.Identity.Name;
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+                isAdmin = user?.IsAdmin ?? false;
+            }
+
+            ViewBag.IsAdmin = isAdmin;
             return View();
         }
+
 
         public IActionResult Privacy()
         {

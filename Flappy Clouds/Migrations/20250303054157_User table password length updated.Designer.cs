@@ -4,6 +4,7 @@ using Flappy_Clouds.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Flappy_Clouds.Migrations
 {
     [DbContext(typeof(FlappyCloudsContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250303054157_User table password length updated")]
+    partial class Usertablepasswordlengthupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
