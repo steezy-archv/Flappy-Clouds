@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="StyleSheet2.css">
+</head>
+<body>
+    <div class="cart-container">
+        <h2 class="cart-header">Your Cart</h2>
+        <div class="divider"></div>
+
+        <div class="cart-item">
+            <div class="item-info">
+                <span class="item-name">Batman Key Chain</span>
+                <div class="quantity-control">
+                    <button onclick="changeQuantity(-1, 'quantity1')">-</button>
+                    <input type="number" id="quantity1" value="2" min="1">
+                    <button onclick="changeQuantity(1, 'quantity1')">+</button>
+                </div>
+            </div>
+            <span class="price">$30 x 2</span>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-info">
+                <span class="item-name">Batman Key Chain</span>
+                <div class="quantity-control">
+                    <button onclick="changeQuantity(-1, 'quantity2')">-</button>
+                    <input type="number" id="quantity2" value="2" min="1">
+                    <button onclick="changeQuantity(1, 'quantity2')">+</button>
+                </div>
+            </div>
+            <span class="price">$30 x 2</span>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-info">
+                <span class="item-name">Batman Key Chain</span>
+                <div class="quantity-control">
+                    <button onclick="changeQuantity(-1, 'quantity3')">-</button>
+                    <input type="number" id="quantity3" value="2" min="1">
+                    <button onclick="changeQuantity(1, 'quantity3')">+</button>
+                </div>
+            </div>
+            <span class="price">$30 x 2</span>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-info">
+                <span class="item-name">Batman Key Chain</span>
+                <div class="quantity-control">
+                    <button onclick="changeQuantity(-1, 'quantity4')">-</button>
+                    <input type="number" id="quantity4" value="2" min="1">
+                    <button onclick="changeQuantity(1, 'quantity4')">+</button>
+                </div>
+            </div>
+            <span class="price">$30 x 2</span>
+        </div>
+        <div class="divider"></div>
+        <div class="cart-total">Total: <strong>$300</strong></div>
+
+        <div class="cart-buttons">
+            <button>Continue Shopping</button>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="payment-options">
+            <input type="checkbox" name="payment-method" onclick="selectOnlyOne(this)"> Cash on Delivery
+            <input type="checkbox" name="payment-method" onclick="selectOnlyOne(this)"> Online Payment
+        </div>
+    </div>
+
+    <script>
+        function changeQuantity(amount, id) {
+            let quantityInput = document.getElementById(id);
+            let currentValue = parseInt(quantityInput.value);
+            let newValue = currentValue + amount;
+            if (newValue >= 1) {
+                quantityInput.value = newValue;
+            }
+        }
+        function selectOnlyOne(checkbox) {
+            let checkboxes = document.getElementsByName('payment-method');
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false;
+            });
+        }
+    </script>
+</body>
+</html>
