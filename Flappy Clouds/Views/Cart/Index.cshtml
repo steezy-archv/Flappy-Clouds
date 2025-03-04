@@ -1,0 +1,60 @@
+﻿@model List<Flappy_Clouds.Entities.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Your Cart";
+    var totalAmount = ViewBag.TotalAmount;
+}
+
+<div class="cart-container">
+    <h2 class="cart-header">Your Cart</h2>
+    <div class="divider"></div>
+
+    @if (Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <span class="item-name">@item.Product.Name</span>
+                            <div class="quantity-control">
+                                <button onclick="updateQuantity(@item.CartId, -1)">-</button>
+                                <input type="number" id="quantity-@item.CartId" value="@item.Quantity" min="1" readonly>
+                                <button onclick="updateQuantity(@item.CartId, 1)">+</button>
+                            </div>
+                        </div>
+                        <span class="price">$@(item.Product.Price * item.Quantity)</span>
+                    </div>
+        }
+    }
+    else
+    {
+            <strong>Your cart is empty.</strong>
+    }
+
+    <div class="total">
+        <strong>Total: $@totalAmount</strong>
+    </div>
+
+    <div class="cart-buttons">
+        <button>Continue Shopping</button>
+        <button>Checkout</button>
+    </div>
+
+    <div class="payment-options">
+        <input type="checkbox" name="payment-method" onclick="selectOnlyOne(this)"> Cash on Delivery
+        <input type="checkbox" name="payment-method" onclick="selectOnlyOne(this)"> Online Payment
+    </div>
+</div>
+
+<script>
+    function updateQuantity(cartId, change) {
+        fetch(`/Cart/UpdateQuantity?cartId=${cartId}&change=${change}`, { method: "POST" })
+        .then(() => location.reload());
+    }
+
+    function selectOnlyOne(checkbox) {
+        document.querySelectorAll('input[name="payment-method"]').forEach(item => {
+            if (item !== checkbox) item.checked = false;
+        });
+    }
+</script>

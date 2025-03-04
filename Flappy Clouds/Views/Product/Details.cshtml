@@ -1,0 +1,87 @@
+﻿@model ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<div class="product-details">
+
+    <!-- Product Image -->
+    <div class="product-image">
+        <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" />
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+        <small>Flappy Clouds</small>
+        <h1>@Model.Product.Name</h1>
+        <div class="price">$@Model.Product.Price</div>
+
+        @if (Model.Product.StockQuantity > 0)
+        {
+                <div class="status">Available</div>
+        }
+        else
+        {
+                <div class="status" style="background-color: #f2dede; color: #a94442;">Out of Stock</div>
+        }
+
+        <p>@Model.Product.Description</p>
+
+        <p>
+            <strong> NOTE: Each item is made with the highest attention to quality and care. Due to the nature of handmade items, gentle use is recommended.</strong>
+        </p>
+
+        <div class="quantity">
+            Quantity:
+            <input type="number" value="1" min="1" max="@Model.Product.StockQuantity" />
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="add-to-cart" onclick="addToCart(@Model.Product.ProductId)">Add to Cart</button>
+            <button class="buy-now">Buy Now</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="suggestions">
+    <h2>You might also like</h2>
+    <div class="products">
+        @foreach (var item in Model.RelatedProducts)
+        {
+                <div class="product-card">
+                    <img src="@item.ImageUrl" alt="@item.Name" />
+                    <h3>@item.Name</h3>
+                    <span>$@item.Price</span>
+                </div>
+        }
+    </div>
+</div>
+
+<script>
+    function addToCart(productId) {
+        var quantity = document.getElementById('quantityInput').value;
+
+        fetch('/Cart/AddToCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() // if using anti-forgery tokens
+            },
+            body: JSON.stringify({ productId: productId, quantity: parseInt(quantity) })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to add to cart');
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            alert('Error: ' + error.message);
+        });
+    }
+</script>

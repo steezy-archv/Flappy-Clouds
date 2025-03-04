@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Flappy_Clouds.Entities.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1 class="text-center mt-4">Our Products</h1>
+
+<div class="product-section">
+    <div class="product-grid">
+        @foreach (var product in Model)
+        {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            @* <p class="card-text">@product.Description</p> *@
+                            <p class="card-text fw-bold">$@product.Price</p>
+                            @* <p class="card-text">
+                                Category: @product.Category?.Name ?? "Uncategorized"
+                            </p> *@
+                            <a href="@Url.Action("Details", "Product", new { id = product.ProductId })" class="btn btn-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+</div>

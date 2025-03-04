@@ -13,79 +13,89 @@
     <link rel="stylesheet" href="~\wwwroot\css\site.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="hero-section">
     
     <!-- Discover section -->
-    @* Should make dynamic *@
     <section class="discover-section">
         <h2>Discover</h2>
         <div class="discover-grid">
-            <button class="card">
-                <img src="./Assets/Products/AnimalSpreadFeatured_2048x.jpg" alt="Thumbnail" />
-                <div class="Discover-label">Featured</div>
-            </button>
-            <button class="card">
-                <img src="#" alt="Thumbnail" />
-                <div class="Discover-label">Key Chains</div>
-            </button>
-            <button class="card">
-                <img src="#" alt="Thumbnail" />
-                <div class="Discover-label">Phone Charm</div>
-            </button>
-            <button class="card">
-                <img src="#" alt="Thumbnail" />
-                <div class="Discover-label">Plushies</div>
-            </button>
-            <button class="card">
-                <img src="#" alt="Thumbnail" />
-                <div class="Discover-label">Jewelries</div>
-            </button>
-            <button class="card">
-                <img src="#" alt="Thumbnail" />
-                <div class="Discover-label">Hot Picks</div>
-            </button>
+
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Plushie-all.jpg" alt="Plush Toy"><div class="label">Featured</div></a>
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Keychain-1.png" alt="Plush Toy"><div class="label">Key Chains</div></a>
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Phone-Charm-1.png" alt="Plush Toy"><div class="label">Phone Charms</div></a>
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Bracelet-all.png" alt="Plush Toy"><div class="label">Jewelries</div></a>
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Plushie-3.png" alt="Plush Toy"><div class="label">Plushies</div></a>
+            <a href="destination-page.html" class="card"><img src="..\uploads\products\Bouquet.png" alt="Plush Toy"><div class="label">Hotpicks</div></a>
+
         </div>
     </section>
 
     <!-- Reviews section -->
     @* Keeping Hard Coded *@
     <section class="reviews-section">
-        <h2>Reviews</h2>
-        <div class="review-cards">
-            <div class="review-card">
-                <img src="#" alt="Product 1">
-                <div class="review-text">
-                    <h3>"Perfect addition to my phone!"</h3>
-                    <p>This phone charm is everything I hoped for. The design is intricate, and the colors pop beautifully.</p>
+    <h2>Reviews</h2>
+    <div class="review-cards">
+
+        <div class="review-card">
+            <img src="..\uploads\products\Phone-Charm-1.png" alt="Product 1">
+            <div class="review-content">
+                <h3>“Perfect addition to my phone!”</h3>
+                <p>
+                    This phone charm is everything I hoped for! The design is intricate, and the colors pop beautifully. 
+                    It's lightweight, so it doesn’t make my phone feel bulky. I've received so many compliments already!
+                </p>
+                <div class="review-footer">
+                    <span class="review-author">• Alex M</span>
+                    <button class="detail-button">View product details</button>
                 </div>
-                <button class="detail-button">View product detail</button>
-            </div>
-            <div class="review-card">
-                <img src="#" alt="Product 2">
-                <div class="review-text">
-					<h3>"Soft and Super Cuddly"</h3>
-					<p>I absolutely adore my plushie. It’s the softest thing ever and makes a wonderful snuggle buddy.</p>
-                </div>
-                <button class="detail-button">View product detail</button>
-            </div>
-            <div class="review-card">
-                <img src="#" alt="Product 3">
-                <div class="review-text">
-                    <h3>"Simple and Elegant"</h3>
-                    <p>The jewelry set I ordered is elegant and versatile enough to pair with any outfit.</p>
-                </div>
-                <button class="detail-button">View product detail</button>
-            </div>
-            <div class="review-card">
-                <img src="#" alt="Product 4">
-                <div class="review-text">
-                    <h3>"Adorable and Durable!"</h3>
-                    <p>The keychain is sturdy and adorable. I’ve received so many compliments!</p>
-                </div>
-                <button class="detail-button">View product detail</button>
             </div>
         </div>
+
+        <div class="review-card">
+            <img src="..\uploads\products\Plushie-2.png" alt="Product 1">
+            <div class="review-content">
+                <h3>“Soft and Super Cuddly!”</h3>
+                <p>
+                    I got the bunny plushy for my little sister, and she absolutely loves it! The material is incredibly soft, and the stitching looks durable. It’s the perfect size to cuddle, and it arrived in adorable packaging. Would definitely buy again!
+                </p>
+                <div class="review-footer">
+                    <span class="review-author">• Sara K</span>
+                    <button class="detail-button">View product details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="..\uploads\products\Bracelet-5.png" alt="Product 1">
+            <div class="review-content">
+                <h3>“Simple and Elegant!”</h3>
+                <p>
+                   The bracelet is beautiful, and the minimalist design makes it easy to pair with any outfit. The adjustable band is a nice touch, too. I only wish it came in more color options. Still, a fantastic buy for the price!
+                </p>
+                <div class="review-footer">
+                    <span class="review-author">• Jason K</span>
+                    <button class="detail-button">View product details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <img src="..\uploads\products\Keychain-4.png" alt="Product 1">
+            <div class="review-content">
+                <h3>“Adorable and Durable!”</h3>
+                <p>
+                    I bought the duck-shaped key chain, and it’s even cuter in person! The quality is excellent, and it feels sturdy enough to handle everyday use. The only reason I gave it 4 stars is that the clip is a bit hard to open. Overall, I love it!
+                </p>
+                <div class="review-footer">
+                    <span class="review-author">• Emily R</span>
+                    <button class="detail-button">View product details</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
     </section>
+
     
 </body>
 </html>

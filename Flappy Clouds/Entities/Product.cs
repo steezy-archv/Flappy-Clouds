@@ -22,6 +22,9 @@ public partial class Product
 
     public int? StockQuantity { get; set; }
 
+    [NotMapped]
+    public string Status => StockQuantity > 0 ? "Available" : "Out of Stock";
+
     public int? CategoryId { get; set; }
 
     [StringLength(255)]

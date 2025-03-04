@@ -1,4 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.EntityFrameworkCore
+@inject Flappy_Clouds.Entities.FlappyCloudsContext _context
+
+@* @{
+    var email = User.Identity.Name;
+    var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+    var isAdmin = user?.Role == "Admin";
+} *@
+
+@{
+    var isAdmin = false;
+    if (Context.User.Identity.IsAuthenticated)
+    {
+        var role = Context.Items["UserRole"] as string;
+        isAdmin = role == "Admin";
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,23 +41,22 @@
             </button>
 
             <div class="dropdown" id="userDropdown">
-
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if ((bool)ViewBag.IsAdmin)
+                    @if (isAdmin)
                     {
-                        <a href="/Admin/Dashboard">Admin Panel</a>
+                        <a class="dropdown-item" href="/Admin/Dashboard">Admin Dashboard</a>
                     }
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a>
                 }
                 else
                 {
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Registration">Register</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Login">Login</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Registration">Register</a>
                 }
             </div>
 
-            <button class="icon cart-icon">
+            <a class="icon cart-icon" asp-controller="Cart" asp-action="Index">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_9_304)">
                         <path d="M1.66669 1.66663H8.33335L12.8 23.9833C12.9524 24.7506 13.3699 25.4399 13.9793 25.9305C14.5887 26.421 15.3512 26.6816 16.1334 26.6666H32.3333C33.1155 26.6816 33.878 26.421 34.4874 25.9305C35.0968 25.4399 35.5143 24.7506 35.6667 23.9833L38.3334 9.99996H10M16.6667 35C16.6667 35.9204 15.9205 36.6666 15 36.6666C14.0795 36.6666 13.3334 35.9204 13.3334 35C13.3334 34.0795 14.0795 33.3333 15 33.3333C15.9205 33.3333 16.6667 34.0795 16.6667 35ZM35 35C35 35.9204 34.2538 36.6666 33.3334 36.6666C32.4129 36.6666 31.6667 35.9204 31.6667 35C31.6667 34.0795 32.4129 33.3333 33.3334 33.3333C34.2538 33.3333 35 34.0795 35 35Z" stroke="#5B462E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -50,7 +67,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-            </button>
+            </a>
         </div>
         @* <div>
             @await Html.PartialAsync("_LoginPartial")
@@ -66,8 +83,8 @@
 
     <!-- Navigation bar -->
     <nav class="nav-bar">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">Shop</a>
+        <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+        <a asp-controller="Product" asp-action="Products" class="nav-link">Shop</a>
         <a href="#" class="nav-link">Contact</a>
         <a href="#" class="nav-link">Shipping Policy</a>
     </nav>

@@ -16,4 +16,29 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\uploads\products\AnimalSpreadFeatured_2048x.jpg" />
+    <None Include="wwwroot\uploads\products\Awkward-Frogs.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 015555.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 015624.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020542.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020553.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020608.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020616.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020626.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020640.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020648.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020656.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020705.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020718.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020724.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020738.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020745.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020753.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020819.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020826.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020832.png" />
+    <None Include="wwwroot\uploads\products\Screenshot 2025-02-04 020846.png" />
+  </ItemGroup>
+
 </Project>

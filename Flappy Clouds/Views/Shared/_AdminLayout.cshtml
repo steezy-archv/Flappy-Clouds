@@ -7,13 +7,15 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
         <a class="navbar-brand" href="/Admin/Dashboard">Admin Panel</a>
+
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="/Admin/Users">Users</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Admin/Products">Products</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Admin/Orders">Orders</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Admin/AddAdmin">Add Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin/AddAdmin">Manage Admins</a></li>
                 <li class="nav-item"><a class="nav-link" href="/">Go to Site</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Account/Logout">Logout</a></li>
             </ul>
@@ -23,5 +25,8 @@
     <div class="container mt-4">
         @RenderBody()
     </div>
+
 </body>
 </html>
+
+@RenderSection("Scripts", required: false)

@@ -13,6 +13,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,7 +36,11 @@ app.UseRouting();
 
 app.UseAuthentication();
 
+//app.UseMiddleware<UserRoleMiddleware>();
+
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapStaticAssets();
 
