@@ -113,6 +113,33 @@ form {
     padding: 8px;
 }
 
+#searchForm {
+    position: relative;
+    width: 30%;
+    min-width: 200px;
+    margin-right: 24px;
+}
+
+#searchInput {
+    width: 100%;
+    border-radius: 24px;
+}
+
+#suggestions {
+    border-radius: 12px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #suggestions a {
+        padding: 10px;
+        cursor: pointer;
+    }
+
 
 .header-icons .icon {
     background: none;
@@ -256,9 +283,9 @@ form {
         width: 100%;
         padding: 10px;
         background-color: rgba(111, 85, 55, 0.9);
-        color: #fff;
+        color: var(--White);
         font-weight: 500;
-        text-align: left;
+        text-align: center;
         font-size: 16px;
     }
 
@@ -504,15 +531,15 @@ form {
     }
 
 .product-btn {
-    text-decoration: none;
-    color: var(--White);
+    text-decoration: underline;
+    color: var(--BG);
 }
 
 
 
 .card-body {
-    background: #4F3A24;
-    color: var(--White);
+    background: var(--Font-Icons);
+    color: var(--BG);
     justify-content:flex-start;
 }
 
@@ -522,10 +549,10 @@ form {
 
 .card-body p{
     font-size: 1rem;
-    color: var(--White);
+    color: var(--BG);
 }
 
-/*.pagination {
+.pagination {
     margin-top: 20px;
 }
 
@@ -540,14 +567,15 @@ form {
 
     .page-btn:hover, .next-page:hover {
         background-color: #3d3020;
-    }*/
+    }
 
 /* Container for the product details */
 .product-details {
     display: flex;
-    gap: 40px;
+    justify-content: flex-start;
+    gap: 20px;
     max-width: 1100px;
-    margin: 40px auto;
+    /*margin: 40px auto;*/
     padding: 20px;
 }
 
@@ -562,6 +590,7 @@ form {
 
 /* Product Info Section */
 .product-info {
+    min-width:200px;
     background-color: rgba(255,255,255,0.35);
     padding: 30px;
     border-radius: 20px;
@@ -569,10 +598,13 @@ form {
     flex: 1;
     color: var(--Font-Icons);
 }
+    .product-info .brand {
+        font-family: "Cherry Bomb One", serif;
+    }
 
     /* Product Title */
     .product-info h1 {
-        font-size: 28px;
+        /*font-size: 28px;*/
         margin-bottom: 10px; 
     }
 
@@ -590,7 +622,7 @@ form {
         color: #355e3b;
         border-radius: 20px;
         font-size: 14px;
-        margin-bottom: 20px;   
+        margin-bottom: 20px;
     }
 
     /* Product Description */
@@ -619,6 +651,7 @@ form {
 /* Buttons */
 .buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 

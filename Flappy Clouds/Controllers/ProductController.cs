@@ -7,23 +7,40 @@ namespace Flappy_Clouds.Controllers
     public class ProductController : Controller
     {
         private readonly FlappyCloudsContext _context;
-        private const int DefaultPageSize = 12;
+        private const int DefaultPageSize = 6;
 
         public ProductController(FlappyCloudsContext context)
         {
             _context = context;
         }
 
-        // Action to display all products
-        public async Task<IActionResult> Products()
+        // ✅ Action to display paginated products
+        [HttpGet]
+        public async Task<IActionResult> Products(int page = 1, int pageSize = DefaultPageSize)
         {
+            var totalProducts = await _context.Products.CountAsync();
+
             var products = await _context.Products
                 .Include(p => p.Category)
+                .OrderByDescending(p => p.ProductId)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
-            return View(products);
+
+            var totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+            var model = new ProductListViewModel
+            {
+                Products = products,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
+
+            return View(model);
         }
 
-        // Action to show single product details
+        // ✅ Action to show single product details
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -34,7 +51,7 @@ namespace Flappy_Clouds.Controllers
 
             var relatedProducts = await _context.Products
                 .Where(p => p.Category == product.Category && p.ProductId != id && p.StockQuantity > 0)
-                .OrderBy(r => Guid.NewGuid()) 
+                .OrderBy(r => Guid.NewGuid())
                 .Take(3)
                 .ToListAsync();
 
@@ -47,28 +64,39 @@ namespace Flappy_Clouds.Controllers
             return View(viewModel);
         }
 
-        //public async Task<IActionResult> Index(int page = 1, int pageSize = DefaultPageSize)
-        //{
-        //    var totalProducts = await _context.Products.CountAsync();
+        // ✅ Suggestions for search bar (autocomplete)
+        [HttpGet]
+        public async Task<IActionResult> Suggest(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return Json(new List<object>());
 
-        //    var products = await _context.Products
-        //        .OrderBy(p => p.ProductId)
-        //        .Skip((page - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .ToListAsync();
+            var products = await _context.Products
+                .Where(p => p.Name.ToLower().Contains(term.ToLower()))
+                .Select(p => new
+                {
+                    id = p.ProductId,
+                    name = p.Name
+                })
+                .Take(5)
+                .ToListAsync();
 
-        //    var totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+            return Json(products);
+        }
 
-        //    var model = new ProductListViewModel
-        //    {
-        //        Products = products,
-        //        CurrentPage = page,
-        //        TotalPages = totalPages
-        //    };
+        // ✅ Search results page
+        [HttpGet]
+        public async Task<IActionResult> SearchResults(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return View(new List<Product>());
 
-        //    return View(model);
-        //}
+            var products = await _context.Products
+                .Where(p => p.Name.ToLower().Contains(term.ToLower()))
+                .Include(p => p.Category)
+                .ToListAsync();
 
-
+            return View(products);
+        }
     }
 }

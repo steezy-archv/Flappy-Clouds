@@ -22,11 +22,52 @@
     @* <link rel="stylesheet" href="~/Flappy_Clouds.styles.css" asp-append-version="true" /> *@
     <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#searchInput').keyup(function() {
+            var term = $(this).val();
+            if (term.length >= 2) {
+                $.ajax({
+                    url: '/Product/Suggest',
+                    data: { term: term },
+                    success: function(data) {
+                        $('#suggestions').empty();
+                        if (data.length === 0) {
+                            $('#suggestions').append('<div class="list-group-item">No results found</div>');
+                        } else {
+                            $.each(data, function(index, product) {
+                                $('#suggestions').append(
+                                    '<a href="/Product/Details/' + product.id + '" class="list-group-item list-group-item-action">' + product.name + '</a>'
+                                );
+                            });
+                        }
+                    }
+                });
+            } else {
+                $('#suggestions').empty();
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        $(document).click(function(event) {
+            if (!$(event.target).closest('#searchInput, #suggestions').length) {
+                $('#suggestions').empty();
+            }
+        });
+    });
+</script>
+
+
 <body>
     <header>
         <!-- Top row: Search bar, User icon, Cart icon -->
-        <input type="text" placeholder="Search products" class="search-bar">
 
+        <form id="searchForm" asp-controller="Product" asp-action="SearchResults" method="get" autocomplete="off">
+            <input type="text" id="searchInput" name="term" placeholder="Search products..." class="form-control" />
+            <div id="suggestions" class="list-group"></div>
+        </form>
 
         <div class="header-icons">
             <button class="icon user-icon" id="userIcon">
@@ -64,9 +105,7 @@
                 </svg>
             </a>
         </div>
-        @* <div>
-            @await Html.PartialAsync("_LoginPartial")
-        </div> *@
+
     </header>
 
     <!-- Title section -->
