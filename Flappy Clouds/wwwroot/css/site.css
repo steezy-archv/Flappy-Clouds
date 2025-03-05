@@ -42,7 +42,7 @@ html {
     --BG: #E9DBCC;
     --White: #FFFFFF;
     --Font-Icons: #5B462E;
-    --Card-label-fill: rgba(91,70,46,0.9);
+    --Card-label-fill: rgba(91,70,46,0.5);
 }
 
 body {
@@ -52,11 +52,6 @@ body {
     background-color: var(--BG);
     color: var(--Font-Icons);
 }
-
-/*.hero-section{
-    padding-left:170px;
-    padding-right:170px;
-}*/
 
 h1{
     font-size: 3rem;
@@ -78,14 +73,7 @@ header{
 }
 
 /* Header */
-/*.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: transparent;
-}*/
+
 form {
     display: flex;
     flex-direction: column;
@@ -112,6 +100,7 @@ form {
     .signup-btn:hover {
         background-color: #8B6F47;
     }
+
 
 .search-bar {
     width: 50%;
@@ -170,19 +159,58 @@ form {
         text-decoration: underline;
     }
 
-.product-section {
-    padding: 8px;
-    text-align: center;
-    align-content: flex-start;
-    background-color: aqua;
-}
-.product-grid {
+/* Signup Page Styles */
+.signup-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto 40px;
+    padding: 20px;
+    border-radius: 10px;
 }
+
+    .signup-container h3 {
+        color: var(--Font-Icons);
+        font-size: 24px;
+    }
+
+    .signup-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 80%;
+    }
+
+    .signup-container input {
+        background-color: transparent;
+        padding: 10px;
+        border: 1px solid var(--Font-Icons);
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .signup-container .error {
+        color: red;
+        font-size: 12px;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    .signup-container .signup-btn {
+        padding: 10px;
+        background-color: var(--Font-Icons);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .signup-container form:focus{
+        color: var(--Font-Icons);
+        background-color: transparent;
+    }
 
 /* Discover Section */
 .discover-section {
@@ -190,13 +218,11 @@ form {
     text-align: center;
     margin-bottom: 60px;
     align-content: center;
-   /* background-color: aqua;*/
+    max-width: 1100px;
 }
 
     .discover-section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        font-weight: bold;
+        margin-bottom: 30px;
     }
 
 .discover-grid {
@@ -209,12 +235,12 @@ form {
 
 .card {
     position: relative;
-    display: block; /* Ensures the link behaves like a block container */
+    display: block;
     width: 300px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-decoration: none; /* Removes underline from the link */
+    text-decoration: none;
 }
 
     .card img {
@@ -246,20 +272,19 @@ form {
 /* Reviews Section */
 .reviews-section {
     padding: 40px 20px;
-    /*background-color: aqua;*/
+    margin-bottom: 60px;
+    max-width: 1100px;
 }
 
     .reviews-section h2 {
         text-align: center;
         margin-bottom: 30px;
-        color: #4F3A24;
     }
 
 .review-cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -434,12 +459,34 @@ form {
             background: #f1f1f1;
         }
 
-/*.product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(340px, 1fr));
-    gap: 20px;
-    padding: 20px;
+
+.product-section {
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 60px;
+    align-content: center;
+    max-width: 1100px;
+}
+
+.product-section h2{
+    margin-bottom:30px;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
+    gap: 40px;
+}
+
+/*.product-grid {
+    display: flex;
+    grid-template-columns: repeat(3, minmax(340px, 1fr));
+    gap: 20px;*/
+    /*padding: 20px;*/
+    /*justify-content: flex-start;
+    max-width: 1100px;
 }*/
 
 .product {
@@ -450,38 +497,33 @@ form {
 }
 
     .product img {
-        width: 340px;
-        height: 340px;
+        width: 300px;
+        height: 300px;
         object-fit: cover;
         border-radius: 5px;
     }
 
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .product img {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .product-btn {
     text-decoration: none;
-    color: #5B462E;
+    color: var(--White);
 }
 
-    .product-btn p {
-        text-decoration: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        margin: 5px;
+
+
+.card-body {
+    background: #4F3A24;
+    color: var(--White);
+    justify-content:flex-start;
+}
+
+    .card-body h5 {
+        font-weight: 400;
     }
 
-        .product-btn p:hover {
-            background-color: #bba48a;
-        }
+.card-body p{
+    font-size: 1rem;
+    color: var(--White);
+}
 
 /*.pagination {
     margin-top: 20px;
@@ -499,7 +541,6 @@ form {
     .page-btn:hover, .next-page:hover {
         background-color: #3d3020;
     }*/
-
 
 /* Container for the product details */
 .product-details {

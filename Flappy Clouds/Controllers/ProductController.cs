@@ -7,6 +7,7 @@ namespace Flappy_Clouds.Controllers
     public class ProductController : Controller
     {
         private readonly FlappyCloudsContext _context;
+        private const int DefaultPageSize = 12;
 
         public ProductController(FlappyCloudsContext context)
         {
@@ -45,6 +46,29 @@ namespace Flappy_Clouds.Controllers
 
             return View(viewModel);
         }
+
+        //public async Task<IActionResult> Index(int page = 1, int pageSize = DefaultPageSize)
+        //{
+        //    var totalProducts = await _context.Products.CountAsync();
+
+        //    var products = await _context.Products
+        //        .OrderBy(p => p.ProductId)
+        //        .Skip((page - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .ToListAsync();
+
+        //    var totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+        //    var model = new ProductListViewModel
+        //    {
+        //        Products = products,
+        //        CurrentPage = page,
+        //        TotalPages = totalPages
+        //    };
+
+        //    return View(model);
+        //}
+
 
     }
 }

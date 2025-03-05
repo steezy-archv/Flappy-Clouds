@@ -1,12 +1,6 @@
 ﻿@using Microsoft.EntityFrameworkCore
 @inject Flappy_Clouds.Entities.FlappyCloudsContext _context
 
-@* @{
-    var email = User.Identity.Name;
-    var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-    var isAdmin = user?.Role == "Admin";
-} *@
-
 @{
     var isAdmin = false;
     if (Context.User.Identity.IsAuthenticated)
@@ -32,6 +26,7 @@
     <header>
         <!-- Top row: Search bar, User icon, Cart icon -->
         <input type="text" placeholder="Search products" class="search-bar">
+
 
         <div class="header-icons">
             <button class="icon user-icon" id="userIcon">
