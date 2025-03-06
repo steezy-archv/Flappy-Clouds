@@ -14,7 +14,6 @@ namespace Flappy_Clouds.Controllers
             _context = context;
         }
 
-        // ✅ Action to display paginated products
         [HttpGet]
         public async Task<IActionResult> Products(int page = 1, int pageSize = DefaultPageSize)
         {
@@ -39,7 +38,6 @@ namespace Flappy_Clouds.Controllers
             return View(model);
         }
 
-        // ✅ Action to show single product details
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -64,7 +62,6 @@ namespace Flappy_Clouds.Controllers
             return View(viewModel);
         }
 
-        // ✅ Suggestions for search bar (autocomplete)
         [HttpGet]
         public async Task<IActionResult> Suggest(string term)
         {
@@ -84,7 +81,6 @@ namespace Flappy_Clouds.Controllers
             return Json(products);
         }
 
-        // ✅ Search results page
         [HttpGet]
         public async Task<IActionResult> SearchResults(string term)
         {

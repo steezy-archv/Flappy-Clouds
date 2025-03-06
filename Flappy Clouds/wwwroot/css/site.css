@@ -45,6 +45,40 @@ html {
     --Card-label-fill: rgba(91,70,46,0.5);
 }
 
+#cool-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+#cool-table th{
+    padding: 12px;
+}
+
+    #cool-table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 12px;
+    }
+
+    /*#cool-table tr:nth-child(even) {
+        background-color: #ebc296;
+    }*/
+
+    #cool-table tr:hover {
+        background-color: #b08968;
+        color: var(--White);
+    }
+
+    #cool-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: var(--Font-Icons);
+        color: white;
+    }
+
 body {
     font-family: 'Roboto', sans-serif;
     margin-top: 80px;

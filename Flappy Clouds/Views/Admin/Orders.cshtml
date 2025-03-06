@@ -21,7 +21,7 @@
             <tr>
                 <td>@order.OrderId</td>
                 <td>@order.User.FirstName @order.User.LastName</td>
-                <td>@order.OrderDate?.ToShortDateString()</td>
+                <td>@order.OrderDate.ToShortDateString()</td>
                 <td>@order.TotalAmount.ToString("C")</td>
             </tr>
         }
