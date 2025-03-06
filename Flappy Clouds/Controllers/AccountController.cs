@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Principal;
 
 namespace Flappy_Clouds.Controllers
 {
@@ -89,10 +90,11 @@ namespace Flappy_Clouds.Controllers
                             new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                             new Claim(ClaimTypes.Email, user.Email),
                             new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                            new(ClaimTypes.Role, user.Role) // Now uses real role from DB
+                            new(ClaimTypes.Role, user.Role) 
                         };
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(claimsIdentity);
 
                         await HttpContext.SignInAsync(
                             CookieAuthenticationDefaults.AuthenticationScheme,

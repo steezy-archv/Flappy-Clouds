@@ -8,7 +8,7 @@
         var role = Context.Items["UserRole"] as string;
         isAdmin = role == "Admin";
     }
-}v
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,10 +118,9 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="/Admin/Users">Users</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Admin/Products">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Admin/Orders">Orders</a></li>
+                @* <li class="nav-item"><a class="nav-link" href="/Admin/Orders">Orders</a></li> *@
                 <li class="nav-item"><a class="nav-link" href="/Admin/AddAdmin">Manage Admins</a></li>
-                <li class="nav-item"><a class="nav-link" href="/">Go to Site</a></li>
-                <li class="nav-item"><a class="nav-link" href="/Account/Logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin/AddProduct">Add Products</a></li>
             </ul>
         </div>
     </nav>

@@ -3,10 +3,9 @@
 
 @{
     var isAdmin = false;
-    if (Context.User.Identity.IsAuthenticated)
+    if (User.Identity.IsAuthenticated)
     {
-        var role = Context.Items["UserRole"] as string;
-        isAdmin = role == "Admin";
+        isAdmin = User.IsInRole("Admin");
     }
 }
 
@@ -21,6 +20,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -78,7 +78,7 @@
             <div class="dropdown" id="userDropdown">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @if (isAdmin)
+                    if (User.IsInRole("Admin"))
                     {
                         <a class="dropdown-item" href="/Admin/Dashboard">Admin Dashboard</a>
                     }

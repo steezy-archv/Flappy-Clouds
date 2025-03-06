@@ -873,3 +873,23 @@ form {
     .checkout-btn:hover {
         background-color: #106630;
     }
+
+.pagination .page-link {
+    color: var(--Font-Icons); /* text color */
+    background-color: transparent /* background */
+    border: 1px solid #168141;
+}
+
+.pagination .page-item.active .page-link {
+    color: var(--BG);
+    background-color: var(--Font-Icons); /* active button bg */
+}
+
+.pagination .page-item.disabled .page-link {
+    color: var(--Font-Icons);
+    background-color: transparent;
+}
+
+.pagination .page-link:hover {
+    color: var(--BG);
+}

@@ -1,0 +1,13 @@
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
+public class ContactModel : PageModel
+{
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+        // Handle form submission here (optional)
+    }
+}
