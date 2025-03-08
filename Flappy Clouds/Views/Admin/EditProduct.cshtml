@@ -1,0 +1,71 @@
+﻿@model Flappy_Clouds.Entities.Product
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit Product</h2>
+
+<hr />
+
+<main class="signup-container">
+    <form asp-action="EditProduct" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="ProductId" />
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" type="number" step="0.01" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="StockQuantity"></label>
+            <input asp-for="StockQuantity" type="number" class="form-control" />
+            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CategoryId">Category</label>
+            <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "Name"))" class="form-control">
+                <option value="">-- Select Category --</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Current Product Image</label>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <div>
+                    <img src="@Model.ImageUrl" alt="Product Image" style="width: 150px; height: auto; margin-bottom: 10px;" />
+                </div>
+            }
+            else
+            {
+                <div><em>No image uploaded.</em></div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label>Upload New Image (optional)</label>
+            <input type="file" name="productImage" class="form-control" />
+        </div>
+
+        <button type="submit" class="signup-btn">Update Product</button>
+    </form>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

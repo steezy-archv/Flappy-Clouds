@@ -41,7 +41,7 @@ namespace Flappy_Clouds.Migrations
                     b.HasIndex(new[] { "Name" }, "UQ__Categori__737584F65B9FFFBB")
                         .IsUnique();
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.Order", b =>
@@ -74,7 +74,7 @@ namespace Flappy_Clouds.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.OrderDetail", b =>
@@ -104,7 +104,7 @@ namespace Flappy_Clouds.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.Product", b =>
@@ -148,7 +148,7 @@ namespace Flappy_Clouds.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.Review", b =>
@@ -183,7 +183,7 @@ namespace Flappy_Clouds.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.ShoppingCart", b =>
@@ -217,7 +217,7 @@ namespace Flappy_Clouds.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingCart");
+                    b.ToTable("ShoppingCart", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.Subscriber", b =>
@@ -244,7 +244,7 @@ namespace Flappy_Clouds.Migrations
                     b.HasIndex(new[] { "Email" }, "UQ__Subscrib__A9D105341EBFABCC")
                         .IsUnique();
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("Subscribers", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.User", b =>
@@ -301,7 +301,7 @@ namespace Flappy_Clouds.Migrations
                     b.HasIndex(new[] { "Email" }, "UQ__Users__A9D1053438470288")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Flappy_Clouds.Entities.Order", b =>

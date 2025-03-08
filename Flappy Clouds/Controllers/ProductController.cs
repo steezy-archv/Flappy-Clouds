@@ -48,7 +48,7 @@ namespace Flappy_Clouds.Controllers
             }
 
             var relatedProducts = await _context.Products
-                .Where(p => p.Category == product.Category && p.ProductId != id && p.StockQuantity > 0)
+                .Where(p => p.CategoryId == product.CategoryId && p.ProductId != id && p.StockQuantity > 0)
                 .OrderBy(r => Guid.NewGuid())
                 .Take(3)
                 .ToListAsync();

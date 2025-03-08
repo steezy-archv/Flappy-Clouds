@@ -14,6 +14,7 @@
             <th>Category</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Actions</th> 
         </tr>
     </thead>
     <tbody>
@@ -21,9 +22,15 @@
         {
                 <tr>
                     <td>@product.Name</td>
-                    <td>@product.Category</td>
+                    <td>@product.Category?.Name</td>
                     <td>@product.Price.ToString("C")</td>
                     <td>@product.StockQuantity</td>
+                <td>
+                    <a asp-action="EditProduct" asp-route-id="@product.ProductId" class="signup-btn">Edit</a>
+                    <form asp-action="DeleteProduct" asp-route-id="@product.ProductId" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                        <button type="submit" class="signup-btn">Delete</button>
+                    </form>
+                </td>
                 </tr>
         }
     </tbody>

@@ -14,24 +14,19 @@ namespace Flappy_Clouds.Controllers
         private readonly PasswordHasher<User> _passwordHasher = new();
 
 
-        public AdminController(FlappyCloudsContext context)
-        {
-            _context = context;
-        }
+        public AdminController(FlappyCloudsContext context) => _context = context;
 
         public IActionResult Dashboard()
         {
             return View();
         }
 
-        // User List
         public async Task<IActionResult> Users()
         {
             var users = await _context.Users.ToListAsync();
             return View(users);
         }
 
-        // Edit User
         [HttpGet]
         public async Task<IActionResult> EditUser(int id)
         {
@@ -52,18 +47,18 @@ namespace Flappy_Clouds.Controllers
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
+                user.PasswordHash = _passwordHasher.HashPassword(model, model.PasswordHash);
                 user.PhoneNumber = model.PhoneNumber;
                 user.Address = model.Address;
-                user.Role = model.Role;
 
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Saved changes.";
                 return RedirectToAction("Users");
             }
 
             return View(model);
         }
 
-        // Delete User
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -87,7 +82,6 @@ namespace Flappy_Clouds.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Check if email already exists
                 var emailExists = await _context.Users.AnyAsync(u => u.Email == model.Email);
                 if (emailExists)
                 {
@@ -97,8 +91,6 @@ namespace Flappy_Clouds.Controllers
 
                 model.Role = "Admin";
                 model.CreatedAt = DateTime.Now;
-
-                // Hash the password
                 model.PasswordHash = _passwordHasher.HashPassword(model, model.PasswordHash);
 
                 _context.Users.Add(model);
@@ -111,7 +103,6 @@ namespace Flappy_Clouds.Controllers
             return View(model);
         }
 
-
         public async Task<IActionResult> Products()
         {
             var products = await _context.Products.Include(p => p.Category).ToListAsync();
@@ -119,16 +110,13 @@ namespace Flappy_Clouds.Controllers
         }
 
 
-        // GET: Add Product
         [HttpGet]
         public IActionResult AddProduct()
         {
-            // If you have categories to select
             ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
 
-        // POST: Add Product
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product model, IFormFile productImage)
         {

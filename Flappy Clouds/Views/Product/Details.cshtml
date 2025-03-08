@@ -45,43 +45,46 @@
 
 </div>
 
-<div class="divider"></div>
+<div class="product-section">
+    <h3 class="text-lg-start">Similar Products</h3>
+    <hr/>
 
-<div class="suggestions">
-    <h2>You might also like</h2>
-    <div class="products">
-        @foreach (var item in Model.RelatedProducts)
+    <div class="product-grid">
+        @foreach (var product in Model.RelatedProducts)
         {
-                <div class="product-card">
-                    <img src="@item.ImageUrl" alt="@item.Name" />
-                    <h3>@item.Name</h3>
-                    <span>$@item.Price</span>
+            <div class="card">
+                <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text fw-bold">$@product.Price</p>
+                    <a href="@Url.Action("Details", "Product", new { id = product.ProductId })" class="product-btn">View Details</a>
                 </div>
+            </div>
         }
     </div>
 </div>
 
 <script>
     function addToCart(productId) {
-        var quantity = document.getElementById('quantityInput').value;
+        var quantity = document.querySelector('.quantity input').value; // Fix this to select the correct input element
+
+        console.log("Product ID:", productId, "Quantity:", quantity);
 
         fetch('/Cart/AddToCart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() // if using anti-forgery tokens
+                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
             },
             body: JSON.stringify({ productId: productId, quantity: parseInt(quantity) })
         })
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to add to cart');
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            alert(data.message);
+            alert(data.message);  // Show the response message to the user
         })
         .catch(error => {
-            alert('Error: ' + error.message);
+            alert('Error: ' + error.message);  // Handle any errors during the fetch
         });
     }
 </script>
+

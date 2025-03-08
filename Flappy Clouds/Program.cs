@@ -36,8 +36,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 
-//app.UseMiddleware<UserRoleMiddleware>();
-
 app.UseAuthorization();
 
 app.UseSession();

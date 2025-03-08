@@ -3,11 +3,9 @@ using Flappy_Clouds.Entities;
 using Flappy_Clouds.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Principal;
 
 namespace Flappy_Clouds.Controllers
 {
@@ -87,9 +85,9 @@ namespace Flappy_Clouds.Controllers
                     {
                         var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                            new Claim(ClaimTypes.Email, user.Email),
-                            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                            new(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                            new(ClaimTypes.Email, user.Email),
+                            new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
                             new(ClaimTypes.Role, user.Role) 
                         };
 
@@ -126,15 +124,7 @@ namespace Flappy_Clouds.Controllers
         //public IActionResult AddReview(ReviewViewModel model)
         //{
         //    // Logic to add review
-        //}
 
-
-        //[Authorize]
-        //public IActionResult SecurePage()
-        //{
-        //    ViewBag.Name = HttpContext.User.Identity?.Name;
-        //    return View();
-        //}
 
         private static User GetAccount(RegistrationViewModel model)
         {

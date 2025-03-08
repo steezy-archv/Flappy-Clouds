@@ -8,13 +8,6 @@ namespace Flappy_Clouds.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private readonly FlappyCloudsContext _context;
 
         public HomeController(FlappyCloudsContext context)
@@ -35,7 +28,6 @@ namespace Flappy_Clouds.Controllers
             ViewBag.IsAdmin = isAdmin;
             return View();
         }
-
 
         public IActionResult Privacy()
         {
