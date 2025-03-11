@@ -3,33 +3,36 @@
     ViewData["Title"] = "Contact Us";
 }
 
-<h1>Contact Us</h1>
-
-<p>If you have any questions, feel free to reach out to us!</p>
+<h2>Contact Us</h2>
+<hr />
+<p class="paragraph">If you have any questions, feel free to reach out to us!</p>
 
 <main class="signup-container">
 	<form method="post">
 		<div>
 			<label for="Name">Your Name</label>
-			<input type="text" id="Name" name="Name" placeholder="Enter your name" />
+			<input type="text" id="Name" name="Name" placeholder="Enter your name" class="form-control"/>
 		</div>
 
 		<div>
 			<label for="Email">Your Email</label>
-			<input type="email" id="Email" name="Email" placeholder="Enter your email" />
+			<input type="email" id="Email" name="Email" placeholder="Enter your email" class="form-control"/>
 		</div>
 
 		<div>
 			<label for="Message">Message</label>
-			<textarea id="Message" name="Message" placeholder="Enter your message"></textarea>
+			<textarea id="Message" name="Message" placeholder="Enter your message" class="form-control"></textarea>
 		</div>
 
-		<button type="submit">Send Message</button>
+		<button type="submit" class="signup-btn">Send Message</button>
 	</form>
 </main>
 
+<br/>
+<br/>
 
-<h2>Other Ways to Contact</h2>
+<h3>Other Ways to Contact</h3>
+<hr />
 <ul>
     <li>Email: <a href="mailto:contact@example.com">contact@example.com</a></li>
     <li>Phone: +1 (555) 123-4567</li>

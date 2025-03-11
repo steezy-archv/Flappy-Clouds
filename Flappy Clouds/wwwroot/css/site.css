@@ -97,6 +97,10 @@ h2{
     font-weight: bold;
 }
 
+.paragraph{
+    color: var(--Font-Icons);
+}
+
 header{
     display: flex;
     flex-direction: row;
@@ -121,6 +125,15 @@ form {
     border-radius: 5px;
 }
 
+.form-control:focus{
+    background-color:transparent;
+    outline-color: var(--Font-Icons);
+}
+
+.switch-link{
+    margin-top: 8px;
+}
+
 .signup-btn {
     display: inline-block;
     padding: 5px 5px;
@@ -139,7 +152,8 @@ form {
 .search-bar {
     width: 50%;
     padding: 8px;
-    border: 1px solid var(--Font-Icons);
+    background-color: var(--BG);
+    /*border: 1px solid var(--Font-Icons);*/
     border-radius: 28px;
 }
 
@@ -536,7 +550,6 @@ form {
 .product-grid {
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
     justify-content: center;
     gap: 40px;
 }
@@ -606,6 +619,8 @@ form {
 /* Container for the product details */
 .product-details {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     justify-content: flex-start;
     gap: 20px;
     max-width: 1100px;
@@ -615,8 +630,9 @@ form {
 
 /* Product Image */
 .product-image img {
-    width: 400px;
-    height: auto;
+    width: auto;
+    min-width: 400px;
+    height: 500px;
     border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -624,7 +640,8 @@ form {
 
 /* Product Info Section */
 .product-info {
-    min-width:200px;
+    width: 500px;
+    min-width:400px;
     background-color: rgba(255,255,255,0.35);
     padding: 30px;
     border-radius: 20px;
@@ -640,6 +657,7 @@ form {
     .product-info h1 {
         /*font-size: 28px;*/
         margin-bottom: 10px; 
+        font-weight: 700;
     }
 
     /* Price and Status */
@@ -667,19 +685,35 @@ form {
         color: var(--Font-Icons);
     }
 
+.suggestion-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+.suggestion-section-title{
+    display: flex;
+    padding-left: 12px;
+    justify-content: flex-start;
+    font-weight:600;
+}
+
 /* Quantity */
 .quantity {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 
     .quantity input {
-        width: 50px;
+        width: 60px;
         padding: 8px;
+        padding-left: 12px;
         margin-left: 10px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
+        border: none;
+        outline: none;
+        border-radius: 24px;
     }
 
 /* Buttons */
@@ -761,6 +795,7 @@ form {
             font-size: 14px;
             font-weight: bold;
         }
+
 
 /* Container */
 .container {

@@ -1,0 +1,74 @@
+﻿@model List<Flappy_Clouds.Entities.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    var isGuest = Context.Session.GetInt32("UserId") == null;
+}
+
+<h2>Shopping Cart</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="cool-table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>$@item.Product.Price</td>
+                    <td>
+                        <form asp-action="UpdateQuantity" method="post">
+                            <input type="hidden" name="cartId" value="@item.CartId" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control" style="width:60px; display:inline-block;" />
+                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        </form>
+                    </td>
+                    <td>$@(item.Product.Price * item.Quantity)</td>
+                    <td>
+                        <form asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="cartId" value="@item.CartId" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (isGuest)
+    {
+        <h3>Guest Checkout</h3>
+        <form asp-action="GuestCheckout" method="post">
+            <div class="mb-3">
+                <label for="CustomerName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="CustomerName" name="CustomerName" required>
+            </div>
+            <div class="mb-3">
+                <label for="CustomerPhone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="CustomerPhone" name="CustomerPhone" required>
+            </div>
+            <div class="mb-3">
+                <label for="CustomerAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" required>
+            </div>
+            <button type="submit" class="btn btn-success">Proceed as Guest</button>
+        </form>
+    }
+    else
+    {
+        <a asp-action="Checkout" class="signup-btn">Proceed to Checkout</a>
+    }
+}
