@@ -31,13 +31,32 @@ Flappy Clouds is a full-stack storefront designed for browsing and purchasing ha
 - Entity Framework Core migrations for database setup
 - MSTest coverage for registration, login, invalid credentials, and logout behavior
 
-## Product Gallery
+## Application Preview
 
-<div align="center">
-  <img src="./Flappy%20Clouds/wwwroot/uploads/products/Plushie-all.jpg" alt="Crochet plushies" width="31%" />
-  <img src="./Flappy%20Clouds/wwwroot/uploads/products/Bracelet-all.png" alt="Handmade bracelets" width="31%" />
-  <img src="./Flappy%20Clouds/wwwroot/uploads/products/Phone-Charm-3.png" alt="Handmade phone charm" width="31%" />
-</div>
+### Storefront
+
+![Flappy Clouds storefront](docs/screenshots/home.webp)
+
+### Catalogue and Search
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/catalog.webp" alt="Product catalogue" />
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/search.webp" alt="Product search with autocomplete suggestions" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Paginated product catalogue</sub></td>
+    <td align="center"><sub>Autocomplete product search</sub></td>
+  </tr>
+</table>
+
+### Product Details
+
+![Product details page with related products](docs/screenshots/product-details.webp)
 
 ## Tech Stack
 
